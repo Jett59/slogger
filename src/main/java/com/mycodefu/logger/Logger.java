@@ -51,9 +51,9 @@ private boolean log(String log, LoggingLevel loggingLevel) {
 	if(this.logLevel.getId() >= loggingLevel.getId()) {
 		if(this.logLevel.equals(LoggingLevel.trace)) {
 			var callerElement = new Exception().getStackTrace()[1];
-			out.printf("[%s] %s, on line %s of class %s in module %s", loggingLevel.name(), log, callerElement.getLineNumber(), callerElement.getClassName(), callerElement.getModuleName());
+			out.printf("[%s] %s, on line %s of class %s in module %s\n", loggingLevel.name(), log, callerElement.getLineNumber(), callerElement.getClassName(), callerElement.getModuleName());
 		}
-		out.printf("[%s] %s", loggingLevel.name(), log);
+		out.printf("[%s] %s\n", loggingLevel.name(), log);
 		return true;
 	}
 	return false;
