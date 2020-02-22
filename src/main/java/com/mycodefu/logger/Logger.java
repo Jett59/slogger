@@ -48,7 +48,11 @@ public boolean logTraceInfo(String traceInfo) {
 }
 
 private boolean log(String log, LoggingLevel loggingLevel) {
-	if(logLevel.getId() >= loggingLevel.getId()) {
+	if(this.logLevel.getId() >= loggingLevel.getId()) {
+		if(this.logLevel.equals(LoggingLevel.trace)) {
+			var callerElement = new Exception().getStackTrace()[1];
+			out.println(String.format("[%s] %s, on line %s of class %s in module %s", loggingLevel.name(), log, callerElement.getLineNumber(), callerElement.getClassName(), callerElement.getModuleName()));
+		}
 		out.println(String.format("[%s] %s", loggingLevel.name(), log));
 		return true;
 	}
